@@ -65,6 +65,12 @@ _main:
 	 print 	invalid
 	 jmp	_start
 	 
+	_pushHead:
+	_popHead:
+	_pushTail:
+	_popTail:
+	_clearList:
+	_exit:
 	
 	_ask_restart:
 	 print	loppmt
