@@ -6,29 +6,31 @@
 global _main
 
 extern _printf
+extern _scanf
+extern _system
 extern _malloc
 
 %include "util.inc"
 %include "slist.inc"
 
 section .data
-	endline    	db "", 10, 0
-	welcome   	db "Welcome to the linked list program!", 10, 10, 0
-	prompt1		db "1. Push head", 10, 0
-	prompt2		db "2. Pop head", 10, 0
-	prompt3		db "3. Push tail", 10, 0
-	prompt4		db "4. Pop tail", 10, 0
-	prompt5		db "5. Clear list", 10, 0
-	prompt0		db "0. Exit", 10, 0
-	enterpm		db "your choice:  ", 0
-	usrchoice	db 0
-	loppmt		db "Would you like to play again.", 10, 0
-	datafmt    	db "%i ", 0
-	charfmt		db "%u"
-	invalid		db "Invalid entry", 10, 0
-	
+	endline    	db 	"", 10, 0
+	welcome   	db 	"Welcome to the linked list program!", 10, 10, 0
+	prompt1		db 	"1. Push head", 10, 0
+	prompt2		db 	"2. Pop head", 10, 0
+	prompt3		db 	"3. Push tail", 10, 0
+	prompt4		db 	"4. Pop tail", 10, 0
+	prompt5		db 	"5. Clear list", 10, 0
+	prompt0		db 	"0. Exit", 10, 0
+	enterpm		db 	"your choice:  ", 0
+	usrchoice	db 	0
+	loppmt		db 	"Would you like to play again.", 10, 0
+	datafmt    	db 	"%i ", 0
+	charfmt		db 	" %u"
+	invalid		db 	"Invalid entry", 10, 0
+	input		dd	0
 
-	head       	dd 0
+	head       	dd 	0
 
 section .bss
 
