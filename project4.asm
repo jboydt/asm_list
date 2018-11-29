@@ -21,13 +21,13 @@ section .data
 	prompt3		db 	"3. Push tail", 10, 0
 	prompt4		db 	"4. Pop tail", 10, 0
 	prompt5		db 	"5. Clear list", 10, 0
+	prompt6		db	"6. Insert value", 10, 0
 	prompt0		db 	"0. Exit", 10, 0
 	enterpm		db 	"your choice:  ", 0
 	goodBye		db	"Shutting Down...", 0
 	datapmt		db	"Please enter a number", 0
 	insrtVal	db	0
 	usrchoice	db 	0
-	loppmt		db 	"Would you like to play again.", 10, 0
 	datafmt		db 	"%i ", 0
 	charfmt		db 	" %u"
 	invalid		db 	"Invalid entry", 10, 0
@@ -64,6 +64,8 @@ _main:
 	 je 	_popTail
 	 cmp 	ebx, 5
 	 je 	_clearList
+	 cmp 	ebx, 6
+	 je 	_insert
 	 cmp 	ebx, 0
 	 je 	_exit
 	 cls
@@ -99,7 +101,13 @@ _main:
 	print	datapmt
 	scan 	insrtVal, datafmt
 	jmp _start
-	
+
+	_insert:
+	cls
+	print	datapmt
+	scan 	insrtVal, datafmt
+	jmp _start
+
 	_exit:
 	cls
 	print goodBye
