@@ -53,18 +53,18 @@ _main:
 	 print	prompt0
 	 print	enterpm
 	 scan 	usrchoice, datafmt
-	 mov 	eax, dword[usrchoice]
-	 cmp 	eax, 1
+	 mov 	ebx, dword[usrchoice]
+	 cmp 	ebx, 1
 	 je 	_pushHead
-	 cmp 	eax, 2
+	 cmp 	ebx, 2
 	 je 	_popHead
-	 cmp 	eax, 3
+	 cmp 	ebx, 3
 	 je 	_pushTail
-	 cmp 	eax, 4
+	 cmp 	ebx, 4
 	 je 	_popTail
-	 cmp 	eax, 5
+	 cmp 	ebx, 5
 	 je 	_clearList
-	 cmp 	eax, 0
+	 cmp 	ebx, 0
 	 je 	_exit
 	 cls
 	 print 	invalid
