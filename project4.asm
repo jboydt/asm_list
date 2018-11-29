@@ -75,26 +75,31 @@ _main:
 	print	datapmt
 	scan 	insrtVal, datafmt
 	jmp _start
+
 	_popHead:
 	cls
 	print	datapmt
 	scan 	insrtVal, datafmt
 	jmp _start
+
 	_pushTail:
 	cls
 	print	datapmt
 	scan 	insrtVal, datafmt
 	jmp _start
+
 	_popTail:
 	cls
 	print	datapmt
 	scan 	insrtVal, datafmt
 	jmp _start
+
 	_clearList:
 	cls
 	print	datapmt
 	scan 	insrtVal, datafmt
 	jmp _start
+	
 	_exit:
 	cls
 	print goodBye
