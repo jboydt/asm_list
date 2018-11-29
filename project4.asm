@@ -14,8 +14,8 @@ extern _malloc
 %include "slist.inc"
 
 section .data
-	endline    	db 	"", 10, 0
-	welcome   	db 	"Welcome to the linked list program!", 10, 10, 0
+	endline		db 	"", 10, 0
+	welcome		db 	"Welcome to the linked list program!", 10, 10, 0
 	prompt1		db 	"1. Push head", 10, 0
 	prompt2		db 	"2. Pop head", 10, 0
 	prompt3		db 	"3. Push tail", 10, 0
@@ -23,14 +23,17 @@ section .data
 	prompt5		db 	"5. Clear list", 10, 0
 	prompt0		db 	"0. Exit", 10, 0
 	enterpm		db 	"your choice:  ", 0
+	goodBye		db	"Shutting Down...", 0
+	datapmt		db	"Please enter a number", 0
+	insrtVal	db	0
 	usrchoice	db 	0
 	loppmt		db 	"Would you like to play again.", 10, 0
-	datafmt    	db 	"%i ", 0
+	datafmt		db 	"%i ", 0
 	charfmt		db 	" %u"
 	invalid		db 	"Invalid entry", 10, 0
-	input		dd	0
 
-	head       	dd 	0
+	head		dd 	0
+	tail		dd	0
 
 section .bss
 
@@ -66,31 +69,35 @@ _main:
 	 cls
 	 print 	invalid
 	 jmp	_start
-	 
+
 	_pushHead:
+	cls
+	print	datapmt
+	scan 	insrtVal, datafmt
+	jmp _start
 	_popHead:
+	cls
+	print	datapmt
+	scan 	insrtVal, datafmt
+	jmp _start
 	_pushTail:
+	cls
+	print	datapmt
+	scan 	insrtVal, datafmt
+	jmp _start
 	_popTail:
+	cls
+	print	datapmt
+	scan 	insrtVal, datafmt
+	jmp _start
 	_clearList:
+	cls
+	print	datapmt
+	scan 	insrtVal, datafmt
+	jmp _start
 	_exit:
-	
-	_ask_restart:
-	 print	loppmt
-
-	 sub	esp, 16
-	 mov	dword [esp], charfmt
-	 mov	dword [esp+4], input
-	 call	_scanf
-	 add	esp, 16
-
-	 mov	al, [input]
-	 cmp 	al, 96
-	 jna 	_check_restart
-	 sub 	al, 32
-
-	_check_restart:
-	  cmp	al, 89
-	  je	_start
+	cls
+	print goodBye
 	mov  	esp, ebp
 	mov   	eax, 1
 	pop   	ebp
