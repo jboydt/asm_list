@@ -33,9 +33,14 @@ endstruc
 
 ; %1 head pointer [memory]
 %macro popHead 1
+pushad
   ; Track the node to be removed
+  mov ebx, %1
   ; Move head to next node over
+  mov %1, [ebx + Node.next]
   ; remove the old head node
+  freeNode ebx
+popad
 %endmacro
 
 ; %1 head pointer [memory]

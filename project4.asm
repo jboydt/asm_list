@@ -47,7 +47,7 @@ _main:
 	print welcome
 	_start:
    ; printList head
-   
+
 	 print	prompt1
 	 print	prompt2
 	 print	prompt3
@@ -82,9 +82,7 @@ _main:
 	jmp _start
 
 	_popHead:
-	print	datapmt
-	scan 	insrtVal, datafmt
-  ; popHead head
+  popHead head
 	jmp _start
 
 	_pushTail:
