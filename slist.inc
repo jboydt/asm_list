@@ -4,10 +4,9 @@ struc Node
   .size:
 endstruc
 
-<<<<<<< HEAD
 %macro pushHead 2
   makeNode %1
-  ; memory to memory needs to be resolved 
+  ; memory to memory needs to be resolved
   ; mov [eax + Node.next], [%2] ; links new node to current head node
   mov ebx, [%2]
   mov [eax + Node.next], [ebx]
@@ -17,7 +16,6 @@ endstruc
 ; %1 number of bytes to allocate [immediate]
 ; %2 pointer variable [memory]
 %macro makeNode 2
-=======
 ; %1 value to insert [memory]
 ; %2 head pointer [memory]
 %macro pushHead 2
@@ -108,18 +106,12 @@ popad
 
 ; %1 value to insert [memory]
 %macro makeNode 1
->>>>>>> b22bb767be43aa5055d803fbb9cedc24f6a01494
   sub  esp, 16
   mov  dword [esp], Node.size
   call _malloc
   mov  ebx, [%1]
-<<<<<<< HEAD
-  mov  dword [%2 + Node.data], ebx
-  mov  dword [%2 + Node.next] , 0
-=======
   mov  dword [eax + Node.data], ebx
   mov  dword [eax + Node.next] , 0
->>>>>>> b22bb767be43aa5055d803fbb9cedc24f6a01494
   add  esp, 16
 %endmacro
 
