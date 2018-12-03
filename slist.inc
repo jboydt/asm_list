@@ -42,7 +42,7 @@ pushad
   %%_startPop:
   mov ebx, [%1]
   ; Move head to next node over
-  mov [%1], [ebx + Node.next]
+  mov %1, [ebx + Node.next]
   ; remove the old head node
   freeNode ebx
   %%_end:
