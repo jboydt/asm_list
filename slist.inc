@@ -34,21 +34,49 @@ endstruc
 ; %1 head pointer [memory]
 %macro popHead 1
 pushad
+  cmp [%1], 0
+  jne %%_startPop
+  print emptyls
+  jmp %%_end
   ; Track the node to be removed
-  mov ebx, %1
+  %%_startPop:
+  mov ebx, [%1]
   ; Move head to next node over
-  mov %1, [ebx + Node.next]
+  mov [%1], [ebx + Node.next]
   ; remove the old head node
   freeNode ebx
+  %%_end:
 popad
 %endmacro
 
 ; %1 head pointer [memory]
 %macro popTail 1
   ; Find the last node and next to last node
+  mov ebx, [%1]
+  cmp ebx, 0
+  je  %%_empty
+  %%_startloop:
+  mov ecx, [ebx + Node.next]
+  mov edx, ebx
+  cmp ecx, 0
+  je  %%_removal
+  mov ebx, ecx
+  jmp _startloop
   ; Track the node to be removed
   ; remove the old head node
+  %%_notHead:
+  cmp edx, 0
+  je  %%end:
+  mov [edx + Node.next], 0
+  jmp %%_end
+  %%_removal:
+  cmp ebx, [%1]
+  freeNode ebx
+  jne %%_notHead
   ; null next to last node's pointer
+  %%_empty:
+  print emptyls
+  %%_end:
 %endmacro
 
 ; %1 head pointer [memory]
