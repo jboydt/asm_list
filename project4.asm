@@ -27,6 +27,7 @@ section .data
 	enterpm		db 	"your choice:  ", 0
 	goodBye		db	"Shutting Down...", 0
 	datapmt		db	"Please enter a number: ", 0
+	emptyls		db	"List is empty!!", 10, 0
 	insrtVal	dd	0
 	usrchoice	dd 	0
 	datafmt		db 	"%i", 0
@@ -94,7 +95,7 @@ _main:
 	_popTail:
 	print	datapmt
 	scan 	insrtVal, datafmt
-  ; popTail head
+  popTail head
 	jmp _start
 
 	_clearList:
