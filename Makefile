@@ -11,10 +11,10 @@
 #RM = rm -f
 
 # uncomment for Windows (make sure MinGW/MSYS are installed!)
-CC = c:\mingw\bin\gcc
-CO = $(CC)
-FORMAT = win32
-RM = del # cmd.exe
+#CC = c:\mingw\bin\gcc
+#CO = $(CC)
+#FORMAT = win32
+#RM = del # cmd.exe
 #RM = rm -fo # PowerShell
 
 project4.exe: project4.obj
@@ -27,4 +27,4 @@ clean:
 	$(RM) *.obj
 
 cleanall: clean
-	$(RM) *.exe
+	$(RM) *.exe *.obj

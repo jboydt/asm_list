@@ -9,6 +9,7 @@ extern _printf
 extern _scanf
 extern _system
 extern _malloc
+extern _free
 
 %include "util.inc"
 %include "slist.inc"
@@ -26,6 +27,7 @@ section .data
 	enterpm		db 	"your choice:  ", 0
 	goodBye		db	"Shutting Down...", 0
 	datapmt		db	"Please enter a number: ", 0
+	emptyls		db	"List is empty!!", 10, 0
 	insrtVal	dd	0
 	usrchoice	dd 	0
 	datafmt		db 	"%i", 0
@@ -45,6 +47,8 @@ _main:
 
 	print welcome
 	_start:
+   ; printList head
+
 	 print	prompt1
 	 print	prompt2
 	 print	prompt3
@@ -75,31 +79,35 @@ _main:
 	_pushHead:
 	print	datapmt
 	scan 	insrtVal, datafmt
+  pushHead insertVal, head
 	jmp _start
 
 	_popHead:
-	print	datapmt
-	scan 	insrtVal, datafmt
+  popHead head
 	jmp _start
 
 	_pushTail:
 	print	datapmt
 	scan 	insrtVal, datafmt
+  ; pushTail, insrtVal, head
 	jmp _start
 
 	_popTail:
 	print	datapmt
 	scan 	insrtVal, datafmt
+  popTail head
 	jmp _start
 
 	_clearList:
 	print	datapmt
 	scan 	insrtVal, datafmt
+  ; clearList head
 	jmp _start
 
 	_insert:
 	print	datapmt
 	scan 	insrtVal, datafmt
+  ; MAYBE
 	jmp _start
 
 	_exit:
