@@ -93,14 +93,10 @@ _main:
 	jmp _start
 
 	_popTail:
-	print	datapmt
-	scan 	insrtVal, datafmt
   popTail head
 	jmp _start
 
 	_clearList:
-	print	datapmt
-	scan 	insrtVal, datafmt
   ; clearList head
 	jmp _start
 
