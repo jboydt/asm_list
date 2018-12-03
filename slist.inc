@@ -28,15 +28,50 @@ endstruc
 ; %1 value to insert [memory]
 ; %2 head pointer [memory]
 %macro pushTail 2
-  ; 1. Make a new node with %1 (data)
+    ; 1. Make a new node with %1 (data)
+  makeNode %1
   ; 2. Find the last node
-  ; 3. Do lastNode.next = newNode
+    mov ebx, [%2]
+	
+	%%_start_PushT:
+
+	cmp [ebx + Node.next], 0
+	
+	je %%_is_Tail
+	
+	mov ebx, [ebx + Node.next]
+	
+	jmp %%_start_PushT
+	
+	%%_is_Tail
+
+	; 3. Do lastNode.next = newNode
+	mov [ebx + Node.next], eax
+  
 %endmacro
 
 ; %1 head pointer [memory]
 ; %2 fmt string
 %macro printList 2
-  ; Starting at head node, do
+   ; Starting at head node, do
+  mov ebx, [%2]
+  
+  %%_start_PrintL
+  
+  mprint printFmt, [ebx + Node.data]
+  
+  cmp [ebx + Node.next], 0
+	
+  je %%_is_Tail
+  
+  mov ebx, [ebx + Node.next]
+  
+  jmp %%_start_PrintL
+  
+  %%_is_Tail
+  
+  print promptEnd
+  
   ; loop
   ; print currentNode.data, fmt string
   ; walk/iterate to next node
