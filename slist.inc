@@ -13,9 +13,7 @@ endstruc
   mov [%2], eax
 %endmacro
 
-; %1 number of bytes to allocate [immediate]
-; %2 pointer variable [memory]
-%macro makeNode 2
+
 ; %1 value to insert [memory]
 ; %2 head pointer [memory]
 %macro pushHead 2
@@ -28,6 +26,7 @@ endstruc
 ; %1 value to insert [memory]
 ; %2 head pointer [memory]
 %macro pushTail 2
+<<<<<<< HEAD
     ; 1. Make a new node with %1 (data)
   makeNode %1
   ; 2. Find the last node
@@ -48,6 +47,20 @@ endstruc
 	; 3. Do lastNode.next = newNode
 	mov [ebx + Node.next], eax
   
+=======
+  makeNode %1
+  mov ebx, [%2] ; ebx is head pointer/temp
+  %%_start_pushtail_loop:
+    cmp dword[ebx + Node.next], 0
+    je  %%_tail_found
+    mov ebx, [ebx + Node.next]
+    jmp %%_start_pushtail_loop
+  %%_tail_found:
+  ; ebx points to eax (new node)
+  mov [ebx + Node.next], eax
+  ; eax points to null (tail)
+  mov dword[eax + Node.next], 0
+>>>>>>> 3af7b0f46eead46970e2f3fc5575b4110c928e62
 %endmacro
 
 ; %1 head pointer [memory]
