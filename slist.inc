@@ -13,9 +13,7 @@ endstruc
   mov [%2], eax
 %endmacro
 
-; %1 number of bytes to allocate [immediate]
-; %2 pointer variable [memory]
-%macro makeNode 2
+
 ; %1 value to insert [memory]
 ; %2 head pointer [memory]
 %macro pushHead 2
