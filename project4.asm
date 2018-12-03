@@ -25,11 +25,11 @@ section .data
 	prompt0		db 	"0. Exit", 10, 0
 	enterpm		db 	"your choice:  ", 0
 	goodBye		db	"Shutting Down...", 0
-	datapmt		db	"Please enter a number", 0
-	insrtVal	db	0
-	usrchoice	db 	0
-	datafmt		db 	"%i ", 0
-	charfmt		db 	" %u"
+	datapmt		db	"Please enter a number: ", 0
+	insrtVal	dd	0
+	usrchoice	dd 	0
+	datafmt		db 	"%i", 0
+	charfmt		db 	" %c", 0
 	invalid		db 	"Invalid entry", 10, 0
 
 	head		dd 	0
@@ -50,6 +50,7 @@ _main:
 	 print	prompt3
 	 print	prompt4
 	 print	prompt5
+	 print	prompt6
 	 print	prompt0
 	 print	enterpm
 	 scan 	usrchoice, datafmt
@@ -68,48 +69,40 @@ _main:
 	 je 	_insert
 	 cmp 	ebx, 0
 	 je 	_exit
-	 cls
 	 print 	invalid
 	 jmp	_start
 
 	_pushHead:
-	cls
 	print	datapmt
 	scan 	insrtVal, datafmt
 	jmp _start
 
 	_popHead:
-	cls
 	print	datapmt
 	scan 	insrtVal, datafmt
 	jmp _start
 
 	_pushTail:
-	cls
 	print	datapmt
 	scan 	insrtVal, datafmt
 	jmp _start
 
 	_popTail:
-	cls
 	print	datapmt
 	scan 	insrtVal, datafmt
 	jmp _start
 
 	_clearList:
-	cls
 	print	datapmt
 	scan 	insrtVal, datafmt
 	jmp _start
 
 	_insert:
-	cls
 	print	datapmt
 	scan 	insrtVal, datafmt
 	jmp _start
 
 	_exit:
-	cls
 	print goodBye
 	mov  	esp, ebp
 	mov   	eax, 1
