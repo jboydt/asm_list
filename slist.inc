@@ -4,16 +4,6 @@ struc Node
   .size:
 endstruc
 
-%macro pushHead 2
-  makeNode %1
-  ; memory to memory needs to be resolved
-  ; mov [eax + Node.next], [%2] ; links new node to current head node
-  mov ebx, [%2]
-  mov [eax + Node.next], [ebx]
-  mov [%2], eax
-%endmacro
-
-
 ; %1 value to insert [memory]
 ; %2 head pointer [memory]
 %macro pushHead 2
@@ -26,28 +16,6 @@ endstruc
 ; %1 value to insert [memory]
 ; %2 head pointer [memory]
 %macro pushTail 2
-<<<<<<< HEAD
-    ; 1. Make a new node with %1 (data)
-  makeNode %1
-  ; 2. Find the last node
-    mov ebx, [%2]
-	
-	%%_start_PushT:
-
-	cmp [ebx + Node.next], 0
-	
-	je %%_is_Tail
-	
-	mov ebx, [ebx + Node.next]
-	
-	jmp %%_start_PushT
-	
-	%%_is_Tail
-
-	; 3. Do lastNode.next = newNode
-	mov [ebx + Node.next], eax
-  
-=======
   makeNode %1
   mov ebx, [%2] ; ebx is head pointer/temp
   %%_start_pushtail_loop:
@@ -56,11 +24,10 @@ endstruc
     mov ebx, [ebx + Node.next]
     jmp %%_start_pushtail_loop
   %%_tail_found:
-  ; ebx points to eax (new node)
-  mov [ebx + Node.next], eax
-  ; eax points to null (tail)
-  mov dword[eax + Node.next], 0
->>>>>>> 3af7b0f46eead46970e2f3fc5575b4110c928e62
+    ; ebx points to eax (new node)
+    mov [ebx + Node.next], eax
+    ; eax points to null (tail)
+    mov dword[eax + Node.next], 0
 %endmacro
 
 ; %1 head pointer [memory]
@@ -68,27 +35,18 @@ endstruc
 %macro printList 2
    ; Starting at head node, do
   mov ebx, [%2]
-  
-  %%_start_PrintL
-  
-  mprint printFmt, [ebx + Node.data]
-  
-  cmp [ebx + Node.next], 0
-	
-  je %%_is_Tail
-  
-  mov ebx, [ebx + Node.next]
-  
-  jmp %%_start_PrintL
-  
-  %%_is_Tail
-  
-  print promptEnd
-  
-  ; loop
-  ; print currentNode.data, fmt string
-  ; walk/iterate to next node
-  ; loop
+
+  %%_start_PrintL:
+
+    mprint printFmt, [ebx + Node.data]
+    cmp [ebx + Node.next], 0
+    je %%_is_Tail
+
+    mov ebx, [ebx + Node.next]
+    jmp %%_start_PrintL
+
+  %%_is_Tail:
+    print promptEnd
 %endmacro
 
 ; %1 head pointer [memory]
@@ -102,7 +60,8 @@ pushad
   %%_startPop:
   mov ebx, [%1]
   ; Move head to next node over
-  mov %1, [ebx + Node.next]
+  mov eax, [ebx + Node.next]
+  mov [%1], eax 
   ; remove the old head node
   freeNode ebx
   %%_end:
