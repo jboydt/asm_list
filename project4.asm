@@ -28,15 +28,15 @@ section .data
 	goodBye		db	"Shutting Down...", 0
 	datapmt		db	"Please enter a number: ", 0
 	emptyls		db	"List is empty!!", 10, 0
-	insrtVal	dd	0
-	usrchoice	dd 	0
+	insertVal	dd	0
+	userChoice	dd 	0
 	datafmt		db 	"%i", 0
 	charfmt		db 	" %c", 0
 	invalid		db 	"Invalid entry", 10, 0
 
-	printFmt db "[Node contains: %d]->", 0
+	printFmt db "[Node contains: %i]->", 0
 	promptEnd db "End of List", 10, 0
-	
+
 	head		dd 	0
 	tail		dd	0
 
@@ -50,7 +50,7 @@ _main:
 
 	print welcome
 	_start:
-   ; printList head
+   ;printList head, datafmt
 
 	 print	prompt1
 	 print	prompt2
@@ -60,8 +60,8 @@ _main:
 	 print	prompt6
 	 print	prompt0
 	 print	enterpm
-	 scan 	usrchoice, datafmt
-	 mov 	ebx, dword[usrchoice]
+	 scan 	userChoice, datafmt
+	 mov 	ebx, dword[userChoice]
 	 cmp 	ebx, 1
 	 je 	_pushHead
 	 cmp 	ebx, 2
@@ -81,7 +81,7 @@ _main:
 
 	_pushHead:
 	print	datapmt
-	scan 	insrtVal, datafmt
+	scan 	insertVal, datafmt
   pushHead insertVal, head
 	jmp _start
 
@@ -91,8 +91,8 @@ _main:
 
 	_pushTail:
 	print	datapmt
-	scan 	insrtVal, datafmt
-  ; pushTail, insrtVal, head
+	scan 	insertVal, datafmt
+  pushTail insertVal, head
 	jmp _start
 
 	_popTail:
@@ -100,12 +100,12 @@ _main:
 	jmp _start
 
 	_clearList:
-  ; clearList head
+  clearList head
 	jmp _start
 
 	_insert:
 	print	datapmt
-	scan 	insrtVal, datafmt
+	scan 	insertVal, datafmt
   ; MAYBE
 	jmp _start
 
