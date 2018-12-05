@@ -27,12 +27,16 @@ section .data
 	enterpm		db 	"your choice:  ", 0
 	goodBye		db	"Shutting Down...", 0
 	datapmt		db	"Please enter a number: ", 0
+	emptyls		db	"List is empty!!", 10, 0
 	insrtVal	dd	0
 	usrchoice	dd 	0
 	datafmt		db 	"%i", 0
 	charfmt		db 	" %c", 0
 	invalid		db 	"Invalid entry", 10, 0
 
+	printFmt db "[Node contains: %d]->", 0
+	promptEnd db "End of List", 10, 0
+	
 	head		dd 	0
 	tail		dd	0
 
@@ -47,7 +51,7 @@ _main:
 	print welcome
 	_start:
    ; printList head
-   
+
 	 print	prompt1
 	 print	prompt2
 	 print	prompt3
@@ -82,9 +86,7 @@ _main:
 	jmp _start
 
 	_popHead:
-	print	datapmt
-	scan 	insrtVal, datafmt
-  ; popHead head
+  popHead head
 	jmp _start
 
 	_pushTail:
@@ -94,14 +96,10 @@ _main:
 	jmp _start
 
 	_popTail:
-	print	datapmt
-	scan 	insrtVal, datafmt
-  ; popTail head
+  popTail head
 	jmp _start
 
 	_clearList:
-	print	datapmt
-	scan 	insrtVal, datafmt
   ; clearList head
 	jmp _start
 
