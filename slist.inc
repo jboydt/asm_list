@@ -95,8 +95,8 @@ pushad
   %%_empty:
   print emptyls
   %%_removal:
-  cmp ebx, [%1]
   freeNode ebx
+  cmp ebx, [%1]
   jne %%_notHead
   mov dword[%1], 0
   ; null next to last node's pointer
