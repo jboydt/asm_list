@@ -32,22 +32,24 @@ endstruc
 
 ; %1 head pointer [memory]
 ; %2 fmt string
-%macro printList 2
+;%macro printList 2
    ; Starting at head node, do
-  mov ebx, [%2]
+;   print invalid
+;  mov eax, [%1]
+;  print invalid
+;  %%_start_PrintL:
 
-  %%_start_PrintL:
-
-    mprint printFmt, [ebx + Node.data]
-    cmp dword[ebx + Node.next], 0
-    je %%_is_Tail
-
-    mov ebx, [ebx + Node.next]
-    jmp %%_start_PrintL
-
-  %%_is_Tail:
-    print promptEnd
-%endmacro
+;    mprint %2, dword eax + Node.data
+;    print invalid
+;    cmp dword[eax + Node.next], 0
+;    je  %%_is_Tail
+;    print invalid
+;    mov eax, [eax + Node.next]
+;    jmp %%_start_PrintL
+;
+;  %%_is_Tail:
+;    print promptEnd
+;%endmacro
 
 ; %1 head pointer [memory]
 %macro popHead 1

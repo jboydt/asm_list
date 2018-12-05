@@ -27,7 +27,7 @@
 	pushad
 	sub		esp, 16
   mov		dword[esp], %1
-	mov		eax, %2
+	mov		eax, [%2]
 	mov		dword[esp+4], eax
   call	_printf
   add		esp, 16
