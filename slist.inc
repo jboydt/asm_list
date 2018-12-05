@@ -72,6 +72,7 @@ popad
 
 ; %1 head pointer [memory]
 %macro popTail 1
+pushad
   ; Find the last node and next to last node
   mov ebx, [%1]
   cmp ebx, 0
@@ -98,6 +99,7 @@ popad
   %%_empty:
   print emptyls
   %%_end:
+popad
 %endmacro
 
 ; %1 head pointer [memory]
