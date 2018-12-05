@@ -5,9 +5,9 @@
 #RM = rm -f
 
 # uncomment for Mac OS X
-#CC = gcc
-#CO = ld -lc -macosx_version_min 10.13
-#FORMAT = macho32
+nCC = gcc
+CO = ld -lc -macosx_version_min 10.13
+FORMAT = macho32
 #RM = rm -f
 
 # uncomment for Windows (make sure MinGW/MSYS are installed!)

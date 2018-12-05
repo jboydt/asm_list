@@ -109,7 +109,7 @@ pushad
 
   %%_start_delete:
       mov ebx, [%1]
-      mov eax, [%1 + Node.next]
+      mov eax, [ebx + Node.next]
       freeNode ebx
       mov [%1], eax
       mov ebx, eax
