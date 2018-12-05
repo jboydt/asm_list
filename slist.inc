@@ -71,7 +71,9 @@ popad
 
 ; %1 head pointer [memory]
 %macro popTail 1
+pushad
   ; Find the last node and next to last node
+  mov edx, 0
   mov ebx, [%1]
   cmp ebx, 0
   je  %%_empty
@@ -89,14 +91,17 @@ popad
   je  %%_end
   mov dword[edx + Node.next], 0
   jmp %%_end
-  %%_removal:
-  cmp ebx, [%1]
-  freeNode ebx
-  jne %%_notHead
-  ; null next to last node's pointer
   %%_empty:
   print emptyls
+  jmp %%_end
+  %%_removal:
+  freeNode ebx
+  cmp ebx, [%1]
+  jne %%_notHead
+  mov dword[%1], 0
+  ; null next to last node's pointer
   %%_end:
+popad
 %endmacro
 
 ; %1 head pointer [memory]
@@ -107,7 +112,7 @@ popad
 
   %%_start_delete:
       mov ebx, [%1]
-      mov eax, [%1 + Node.next]
+      mov eax, [ebx + Node.next]
       freeNode ebx
       mov [%1], eax
       mov ebx, eax
@@ -122,10 +127,14 @@ popad
 
 ; %1 node to be removed [immediate]
 %macro freeNode 1
+  pushad
+
   sub esp, 16
   mov dword [esp], %1
   call _free
   add esp, 16
+
+  popad
 %endmacro
 
 ; %1 value to insert [memory]
