@@ -91,13 +91,13 @@ pushad
   je  %%_end
   mov dword[edx + Node.next], 0
   jmp %%_end
+  %%_empty:
+  print emptyls
   %%_removal:
   cmp ebx, [%1]
   freeNode ebx
   jne %%_notHead
   ; null next to last node's pointer
-  %%_empty:
-  print emptyls
   %%_end:
 popad
 %endmacro
