@@ -94,6 +94,7 @@ pushad
   jmp %%_end
   %%_empty:
   print emptyls
+  jmp %%_end
   %%_removal:
   freeNode ebx
   cmp ebx, [%1]
