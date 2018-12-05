@@ -34,13 +34,11 @@ makeNode %1
 ; %2 fmt string
 %macro printList 2
     ;Starting at head node, do
-   cmp dword[%1], 0
-   je %%_end
+  cmp dword[%1], 0
+  je %%_end
   mov eax, [%1]
   %%_start_PrintL:
-
    mprint %2, dword eax + Node.data
-   print endline
    cmp dword[eax + Node.next], 0
    je  %%_is_Tail
    mov eax, [eax + Node.next]
@@ -48,6 +46,7 @@ makeNode %1
 
  %%_is_Tail:
    print promptEnd
+   print endline
    %%_end:
 %endmacro
 
@@ -106,9 +105,8 @@ popad
 %endmacro
 
 ; %1 head pointer [memory]
-pushad
 %macro clearList 1
-
+  pushad
     cmp dword [%1], 0
     je %%_end_loop
 
@@ -124,7 +122,7 @@ pushad
 
   %%_end_loop:
     ; do nothing
-popad
+  popad
 %endmacro
 
 ; %1 node to be removed [immediate]

@@ -34,7 +34,7 @@ section .data
 	charfmt		db 	" %c", 0
 	invalid		db 	"Invalid entry", 10, 0
 
-	printFmt db "[Node contains: %i]->", 0
+	printFmt db "[%i]->", 0
 	promptEnd db "End of List", 10, 0
 
 	head		dd 	0
