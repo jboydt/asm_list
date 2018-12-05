@@ -74,6 +74,7 @@ popad
 %macro popTail 1
 pushad
   ; Find the last node and next to last node
+  mov edx, 0
   mov ebx, [%1]
   cmp ebx, 0
   je  %%_empty
@@ -97,6 +98,7 @@ pushad
   cmp ebx, [%1]
   freeNode ebx
   jne %%_notHead
+  mov dword[%1], 0
   ; null next to last node's pointer
   %%_end:
 popad
@@ -133,7 +135,7 @@ popad
   call _free
   add esp, 16
 
-  popad 
+  popad
 %endmacro
 
 ; %1 value to insert [memory]
