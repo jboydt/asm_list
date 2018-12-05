@@ -19,7 +19,6 @@
  RM = del # cmd.exe
 #RM = rm -fo # PowerShell
 
-
 project4.exe: project4.obj
 	$(CO) project4.obj -o project4.exe
 
