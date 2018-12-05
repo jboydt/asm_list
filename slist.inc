@@ -111,7 +111,7 @@ pushad
 
   %%_start_delete:
       mov ebx, [%1]
-      mov eax, [%1 + Node.next]
+      mov eax, [ebx + Node.next]
       freeNode ebx
       mov [%1], eax
       mov ebx, eax
@@ -126,10 +126,14 @@ popad
 
 ; %1 node to be removed [immediate]
 %macro freeNode 1
+  pushad
+
   sub esp, 16
   mov dword [esp], %1
   call _free
   add esp, 16
+
+  popad 
 %endmacro
 
 ; %1 value to insert [memory]
