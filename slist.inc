@@ -39,7 +39,7 @@ endstruc
   %%_start_PrintL:
 
     mprint printFmt, [ebx + Node.data]
-    cmp [ebx + Node.next], 0
+    cmp dword[ebx + Node.next], 0
     je %%_is_Tail
 
     mov ebx, [ebx + Node.next]
@@ -52,7 +52,7 @@ endstruc
 ; %1 head pointer [memory]
 %macro popHead 1
 pushad
-  cmp [%1], 0
+  cmp dword[%1], 0
   jne %%_startPop
   print emptyls
   jmp %%_end
@@ -61,7 +61,7 @@ pushad
   mov ebx, [%1]
   ; Move head to next node over
   mov eax, [ebx + Node.next]
-  mov [%1], eax 
+  mov [%1], eax
   ; remove the old head node
   freeNode ebx
   %%_end:
@@ -80,13 +80,13 @@ popad
   cmp ecx, 0
   je  %%_removal
   mov ebx, ecx
-  jmp _startloop
+  jmp %%_startloop
   ; Track the node to be removed
   ; remove the old head node
   %%_notHead:
   cmp edx, 0
-  je  %%end:
-  mov [edx + Node.next], 0
+  je  %%_end
+  mov dword[edx + Node.next], 0
   jmp %%_end
   %%_removal:
   cmp ebx, [%1]

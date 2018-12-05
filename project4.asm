@@ -50,7 +50,7 @@ _main:
 
 	print welcome
 	_start:
-   printList head
+   printList head, datafmt
 
 	 print	prompt1
 	 print	prompt2
@@ -92,7 +92,7 @@ _main:
 	_pushTail:
 	print	datapmt
 	scan 	insertVal, datafmt
-  pushTail, insertVal, head
+  pushTail insertVal, head
 	jmp _start
 
 	_popTail:
