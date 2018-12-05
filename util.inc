@@ -33,6 +33,7 @@
   add		esp, 16
 	popad
 %endmacro
+
 %macro	cls 0
   pushad
 	sub		esp, 16
@@ -41,6 +42,7 @@
 	add		esp, 16
   popad
 %endmacro
+
 ;%1 input location
 ;%2 fmt
 %macro scan 2
