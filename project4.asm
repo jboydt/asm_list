@@ -22,7 +22,7 @@ section .data
 	prompt3		db 	"3. Push tail", 10, 0
 	prompt4		db 	"4. Pop tail", 10, 0
 	prompt5		db 	"5. Clear list", 10, 0
-	prompt6		db	"6. Insert value", 10, 0
+	prompt6		db	"6. Insert value (BROKEN)", 10, 0
 	prompt0		db 	"0. Exit", 10, 0
 	enterpm		db 	"your choice:  ", 0
 	goodBye		db	"Shutting Down...", 0
@@ -38,7 +38,6 @@ section .data
 	promptEnd db "End of List", 10, 0
 
 	head		dd 	0
-	tail		dd	0
 
 section .bss
 
@@ -106,7 +105,7 @@ _main:
 	_insert:
 	print	datapmt
 	scan 	insertVal, datafmt
-  ; MAYBE
+  insertNode insertVal, head
 	jmp _start
 
 	_exit:

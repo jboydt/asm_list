@@ -126,7 +126,45 @@ popad
       jne %%_start_delete
 
   %%_end_loop:
-    ; do nothing
+  print emptyls
+  popad
+%endmacro
+
+; (Segmentation fault: 11)
+; (BROKEN)
+; %1 value to insert
+; %2 head pointer
+%macro insertNode 2
+  pushad
+  mov ebx, [%2] ; ebx (upper counter) starts at head pointer
+  mov edx, [%2] ; edx (lower counter) starts at head pointer
+  cmp ebx, 0
+  jne %%_start_upper_counter
+  pushHead %1, %2
+  jmp %%_end
+
+  %%_start_upper_counter:
+    mov ecx, [ebx + Node.data]
+    cmp [%1], ecx
+    jng %%_start_lower_counter
+    mov ebx, [ebx + Node.next]
+    jmp %%_start_upper_counter
+
+  %%_start_lower_counter:
+    cmp [edx + Node.next], ebx
+    je  %%_insert
+    mov edx, [edx + Node.next]
+    jmp %%_start_lower_counter
+
+  %%_insert:
+    push ebx
+    makeNode %1
+    pop  ebx
+    mov  [eax + Node.next], ebx
+    mov  [edx + Node.next], eax
+
+  %%_end:
+
   popad
 %endmacro
 
