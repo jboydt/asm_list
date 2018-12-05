@@ -16,18 +16,23 @@ endstruc
 ; %1 value to insert [memory]
 ; %2 head pointer [memory]
 %macro pushTail 2
-makeNode %1
+  makeNode %1
   mov ebx, [%2] ; ebx is head pointer/temp
+  cmp ebx, 0
+  jne %%_start_pushtail_loop
+  pushHead %1, %2
+  jmp %%_end
   %%_start_pushtail_loop:
-  cmp dword[ebx + Node.next], 0
-  je  %%_tail_found
-  mov ebx, [ebx + Node.next]
-  jmp %%_start_pushtail_loop
+    cmp dword[ebx + Node.next], 0
+    je  %%_tail_found
+    mov ebx, [ebx + Node.next]
+    jmp %%_start_pushtail_loop
   %%_tail_found:
-  ; ebx points to eax (new node)
-  mov [ebx + Node.next], eax
-  ; eax points to null (tail)
+    ; ebx points to eax (new node)
+    mov [ebx + Node.next], eax
+    ; eax points to null (tail)
   mov dword[eax + Node.next], 0
+  %%_end:
 %endmacro
 
 ; %1 head pointer [memory]
