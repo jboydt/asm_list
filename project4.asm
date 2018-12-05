@@ -50,7 +50,7 @@ _main:
 
 	print welcome
 	_start:
-   ;printList head, datafmt
+   printList head, printFmt
 
 	 print	prompt1
 	 print	prompt2
