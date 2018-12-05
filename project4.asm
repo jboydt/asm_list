@@ -34,7 +34,7 @@ section .data
 	charfmt		db 	" %c", 0
 	invalid		db 	"Invalid entry", 10, 0
 
-	printFmt db "[Node contains: %d]->", 0
+	printFmt db "[Node contains: %i]->", 0
 	promptEnd db "End of List", 10, 0
 
 	head		dd 	0
@@ -50,7 +50,7 @@ _main:
 
 	print welcome
 	_start:
-   printList head, datafmt
+   ;printList head, datafmt
 
 	 print	prompt1
 	 print	prompt2
