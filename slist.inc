@@ -104,7 +104,7 @@ popad
 pushad
 %macro clearList 1
 
-    cmp [%1], 0
+    cmp dword [%1], 0
     je %%_end_loop
 
   %%_start_delete:
