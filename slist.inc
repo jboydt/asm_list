@@ -80,9 +80,9 @@ pushad
   je  %%_empty
   %%_startloop:
   mov ecx, [ebx + Node.next]
-  mov edx, ebx
   cmp ecx, 0
   je  %%_removal
+  mov edx, ebx
   mov ebx, ecx
   jmp %%_startloop
   ; Track the node to be removed
