@@ -5,18 +5,18 @@
 #RM = rm -f
 
 # uncomment for Mac OS X
-#CC = gcc
-#CO = ld -lc -macosx_version_min 10.13
-#FORMAT = macho32
-#CL = -dMAC=1
-#RM = rm -f
+CC = gcc
+CO = ld -lc -macosx_version_min 10.13
+FORMAT = macho32
+CL = -dMAC=1
+RM = rm -f
 
-
- CC = gcc
- CO = $(CC)
- FORMAT = win32
- CL = -dWINDOWS=1
- RM = del # cmd.exe
+# uncomment for Windows (make sure MinGW/MSYS are installed!)
+# CC = gcc
+# CO = $(CC)
+# FORMAT = win32
+# CL = -dWINDOWS=1
+# RM = del # cmd.exe
 #RM = rm -fo # PowerShell
 
 

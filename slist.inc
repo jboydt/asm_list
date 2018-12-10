@@ -52,7 +52,11 @@ endstruc
  %%_is_Tail:
    print promptEnd
    print endline
+   jmp %%_end_end
    %%_end:
+   print emptyls
+   print endline
+%%_end_end:
 %endmacro
 
 ; %1 head pointer [memory]
@@ -70,7 +74,9 @@ pushad
   mov [%1], eax
   ; remove the old head node
   freeNode ebx
+
   %%_end:
+
 popad
 %endmacro
 
@@ -189,43 +195,40 @@ pushad
     cmp dword [%1], 0
     je %%_end
 	  mov ebx, [%1]
-	  
+
 	  mov ecx, [%2]
-	  
+
   %%_start_delete:
-      
-	  
+
+
 	  cmp ecx, [ebx + Node.data]
 	  je %%_head_was_value
 	  mov edx, ebx
       mov ebx, [ebx + Node.next]
-	  
+
 	  cmp ebx, 0
 	  jne %%_start_delete
 	  jmp %%_end
       ;mov [%1], eax
-	  
+
 	  %%_head_was_value:
 	  cmp ebx, [%1]
 	  jne %%_dont_pophead
       popHead %1
-	  jmp %%_end
+	  jmp %%_end_loop
 	  %%_dont_pophead:
 	  mov eax, [ebx + Node.next]
-	  mov [edx + Node.next], eax 
+	  mov [edx + Node.next], eax
 	  freeNode ebx
-	  
 
-      cmp ebx, 0
-      
+jmp %%_end_loop
 
     %%_end:
-      
+      print emptyls
 
-    
+
 
   %%_end_loop:
-  print emptyls
   popad
 %endmacro
 

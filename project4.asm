@@ -60,9 +60,10 @@ _main:
   mov  ebp, esp
   and  esp, 0xfffffff0
 
-  clearscreen
-  print welcome
+  ;clearscreen
+  ;print welcome
   _start:
+  clearscreen
   printList head, printFmt
   bigPrint menu
 
@@ -127,7 +128,7 @@ _main:
 
   _clearList:
   clearscreen
-  print clearing
+  ;print clearing
   clearList head
   jmp _start
 
