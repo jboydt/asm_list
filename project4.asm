@@ -24,7 +24,7 @@ prompt4        db     "4. Pop tail", 10, 0
 prompt5        db     "5. Clear list", 10, 0
 prompt6        db    "6. Insert value", 10, 0
 prompt7        db    "7. Remove value", 10, 0
-prompt0        db     "0. Exit", 10, 0
+prompt0        db     "0. Exit", 10, 10, 0
 enterpm        db     "Enter a option:  ", 0
 goodBye        db    "Shutting Down...", 10, 0
 datapmt        db    "Please enter a number: ", 0
@@ -54,92 +54,100 @@ section .bss
 
 section .text
 _main:
-push ebp
-mov  ebp, esp
-and  esp, 0xfffffff0
+  push ebp
+  mov  ebp, esp
+  and  esp, 0xfffffff0
 
-print welcome
-_start:
-printList head, printFmt
+  clearscreen
+  print welcome
+  _start:
+  printList head, printFmt
 
-print prompt1
-print prompt2
-print prompt3
-print prompt4
-print prompt5
-print prompt6
-print prompt7
-print prompt0
-print enterpm
-scan  userChoice, datafmt
-mov  ebx, dword[userChoice]
-cmp  ebx, 1
-je   _pushHead
-cmp  ebx, 2
-je   _popHead
-cmp  ebx, 3
-je   _pushTail
-cmp  ebx, 4
-je   _popTail
-cmp  ebx, 5
-je   _clearList
-cmp  ebx, 6
-je   _insert
-cmp  ebx, 7
-je   _remove
-cmp  ebx, 0
-je   _exit
+  print prompt1
+  print prompt2
+  print prompt3
+  print prompt4
+  print prompt5
+  print prompt6
+  print prompt7
+  print prompt0
+  print enterpm
+  scan  userChoice, datafmt
+  mov  ebx, dword[userChoice]
+  cmp  ebx, 1
+  je   _pushHead
+  cmp  ebx, 2
+  je   _popHead
+  cmp  ebx, 3
+  je   _pushTail
+  cmp  ebx, 4
+  je   _popTail
+  cmp  ebx, 5
+  je   _clearList
+  cmp  ebx, 6
+  je   _insert
+  cmp  ebx, 7
+  je   _remove
+  cmp  ebx, 0
+  je   _exit
 
-print invalid
-jmp  _start
+  print invalid
+  jmp  _start
 
-_pushHead:
-print datapmt
-scan insertVal, datafmt
-pushHead insertVal, head
-print pushinghead
-jmp _start
+  _pushHead:
+  clearscreen
+  print datapmt
+  scan insertVal, datafmt
+  pushHead insertVal, head
+  print pushinghead
+  jmp _start
 
-_popHead:
-popHead head
-print poppinghead
-jmp _start
+  _popHead:
+  clearscreen
+  popHead head
+  print poppinghead
+  jmp _start
 
-_pushTail:
-print datapmt
-scan insertVal, datafmt
-pushTail insertVal, head
-print pushingtail
-jmp _start
+  _pushTail:
+  clearscreen
+  print datapmt
+  scan insertVal, datafmt
+  pushTail insertVal, head
+  print pushingtail
+  jmp _start
 
-_popTail:
-popTail head
-print poppingtail
-jmp _start
+  _popTail:
+  clearscreen
+  popTail head
+  print poppingtail
+  jmp _start
 
-_clearList:
-print clearing
-clearList head
-jmp _start
+  _clearList:
+  clearscreen
+  print clearing
+  clearList head
+  jmp _start
 
-_insert:
-print datapmt
-scan insertVal, datafmt
-insertNode insertVal, head
-print inserting
-jmp _start
+  _insert:
+  clearscreen
+  print datapmt
+  scan insertVal, datafmt
+  insertNode insertVal, head
+  print inserting
+  jmp _start
 
-_remove:
-print datapmt
-scan insertVal, datafmt
-print removing
-jmp _start
+  _remove:
+  clearscreen
+  print datapmt
+  scan insertVal, datafmt
+  print removing
+  jmp _start
 
-_exit:
-clearList head
-clearscreen
-print goodBye
-mov      esp, ebp
-mov       eax, 1
-pop       ebp
-ret
+  _exit:
+  clearList head
+  clearscreen
+  print goodBye
+  mov      esp, ebp
+  mov       eax, 1
+  pop       ebp
+  ret
