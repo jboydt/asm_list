@@ -136,38 +136,41 @@ popad
   popad
 %endmacro
 
-; (Segmentation fault: 11)
-; (BROKEN)
+; This macro will insert a node in sorted ascending order
 ; %1 value to insert
 ; %2 head pointer
 %macro insertNode 2
   pushad
-  mov ebx, [%2] ; ebx (upper counter) starts at head pointer
-  mov edx, [%2] ; edx (lower counter) starts at head pointer
-  cmp ebx, 0
-  jne %%_start_upper_counter
-  pushHead %1, %2
-  jmp %%_end
+  
+  makeNode %1                                    ; Allocate memory for node
 
-  %%_start_upper_counter:
-    mov ecx, [ebx + Node.data]
-    cmp [%1], ecx
-    jng %%_start_lower_counter
-    mov ebx, [ebx + Node.next]
-    jmp %%_start_upper_counter
+  mov  ebx, [%2]                                 ; ebx (upper counter) starts at head pointer
+  mov  ecx, [%1]                                 ; ecx will hold the value to insert
+  cmp  ebx, 0                                    ; Check if list is empty
+  je   %%_insert_at_head                         ; If list is empty, insert at head
+  cmp  ecx, [ebx + Node.data]                    ; Check if value is greater than head
+  jg   %%_insert_next                            ; If value is greater, check next value
+  jmp  %%_insert_at_head
 
-  %%_start_lower_counter:
-    cmp [edx + Node.next], ebx
-    je  %%_insert
-    mov edx, [edx + Node.next]
-    jmp %%_start_lower_counter
+  %%_insert_at_head:
+    mov  dword [eax + Node.next], ebx            ; Move upper counter to next node
+    mov  [head], eax                             ; Place created node at head
+    jmp  %%_end
 
-  %%_insert:
-    push ebx
-    makeNode %1
-    pop  ebx
-    mov  [eax + Node.next], ebx
-    mov  [edx + Node.next], eax
+  %%_insert_next:
+    mov  edx, ebx                                ; edx (lower counter)
+    mov  ebx, [ebx + Node.next]                  ; Point ebx to next element
+    cmp  ebx, 0
+    je   %%_insert_here                          ; If upper counter points to empty node, insert here
+    mov  ecx, [%1]
+    cmp  [ebx + Node.data], ecx
+    jg   %%_insert_here                          ; If value to insert is lower than current node, insert here
+    jmp  %%_insert_next                          ; Loop
+
+  %%_insert_here:
+    mov  [edx + Node.next], eax                  ; Point previous node to new node
+    mov  [eax + Node.next], ebx                  ; Point new node to next node
+    jmp  %%_end
 
   %%_end:
 
@@ -193,7 +196,7 @@ popad
   call _malloc
   mov  ebx, [%1]
   mov  dword [eax + Node.data], ebx
-  mov  dword [eax + Node.next] , 0
+  mov  dword [eax + Node.next], 0
   add  esp, 16
 %endmacro
 
