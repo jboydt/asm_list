@@ -123,6 +123,7 @@ _main:
     jmp _start
 
   _exit:
+    clearList head
     clearscreen
     print goodBye
 
