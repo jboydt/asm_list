@@ -1,5 +1,5 @@
 # asm_list
-![Project Ascii Header](/images/CSCI10_Keanan_Ascii_Picture.PNG)
+![](./Images/CSCI10_Keanan_Ascii_Picture.PNG)
 Butte College CSCI 10, Fall 2018
 
 ## Description:
