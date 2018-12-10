@@ -1,4 +1,3 @@
-# asm_list
 ![](./Images/CSCI10_Keanan_Ascii_Picture.PNG)
 
 Butte College CSCI 10, Fall 2018
