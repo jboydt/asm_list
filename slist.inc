@@ -113,7 +113,7 @@ popad
 %macro clearList 1
   pushad
     cmp dword [%1], 0
-    je %%_end
+    je %%_end_loop
 
   %%_start_delete:
       mov ebx, [%1]
@@ -126,10 +126,6 @@ popad
       jne %%_start_delete
       jmp %%_end_loop
 
-    %%_end:
-      print emptyls
-
-    
   %%_end_loop:
   print emptyls
   popad
