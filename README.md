@@ -24,11 +24,13 @@ This program is a linked list. This was a collaboration from all the students in
 * Demell	Williams
 
 ## Supported Functions:
-* pushHead   - Adds a node with a given value to the front of the list.
-* pushTail   - Adds a node with a given value to the back of the list.
-* popHead    - Removes the node from the front of the list.
-* popTail    - Removes the node from the back of the list.
-* clearList  - Removes all nodes from the list.
-* insertNode - Inserts a node with a given value in sorted ascending order.
-* removeNode - Removes a node with a given value
-* printList  - Displays entire list in [Node]-> format
+Function   | Description
+---------- | -----------
+pushHead   | Adds a node with a given value to the front of the list.
+pushTail   | Adds a node with a given value to the back of the list.
+popHead    | Removes the node from the front of the list.
+popTail    | Removes the node from the back of the list.
+clearList  | Removes all nodes from the list.
+insertNode | Inserts a node with a given value in sorted ascending order.
+printList  | Displays entire list in [Node]-> format
+removeNode | Removes a node with the given value.
