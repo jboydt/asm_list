@@ -30,6 +30,7 @@ section .data
   goodBye        db  "Shutting Down...", 0
   datapmt        db  "Please enter a number: ", 0
   emptyls        db  "List is empty!!", 10, 0
+  listCleared    db  "List has been cleared.", 10, 0 
   insertVal      dd  0
   userChoice     dd  0
   datafmt        db  "%i", 0
