@@ -1,6 +1,9 @@
 # asm_list
 Butte College CSCI 10, Fall 2018
 
+## Description:
+This program is a linked list. This was a collaboration from all the students in the Butte College CSCI 10 class in the Fall of 2018.
+
 ## Contributors:
 * John Boyd Trolinger
 * Colton J. Davies
@@ -19,10 +22,7 @@ Butte College CSCI 10, Fall 2018
 * Andrea E.	Williams
 * Demell	Williams
 
-## Description:
-This program is a linked list 
-
-### Supported Functions:
+## Supported Functions:
 * pushHead   - Adds a node with a given value to the front of the list.
 * pushTail   - Adds a node with a given value to the back of the list.
 * popHead    - Removes the node from the front of the list.
