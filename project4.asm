@@ -22,22 +22,22 @@ prompt2        db     "2. Pop head", 10, 0
 prompt3        db     "3. Push tail", 10, 0
 prompt4        db     "4. Pop tail", 10, 0
 prompt5        db     "5. Clear list", 10, 0
-prompt6        db    "6. Insert value", 10, 0
-prompt7        db    "7. Remove value", 10, 0
+prompt6        db     "6. Insert value", 10, 0
+prompt7        db     "7. Remove value", 10, 0
 prompt0        db     "0. Exit", 10, 10, 0
 enterpm        db     "Enter a option:  ", 0
-goodBye        db    "Shutting Down...", 10, 0
-datapmt        db    "Please enter a number: ", 0
-emptyls        db    "List is empty...", 10, 0
-pushinghead      db     "Inserting number in head...", 10, 0
-poppinghead      db     "Removing number from head...", 10, 0
-pushingtail       db     "Inserting number in tail...", 10, 0
-poppingtail       db     "Removing number from tail...", 10, 0
-clearing          db     "Clearing the list...", 10, 0
-inserting         db     "Inserting a number...", 10, 0
-removing         db     "Removing a number...", 10, 0
-insertVal     dd    0
-userChoice    dd     0
+goodBye        db     "Shutting Down...", 10, 0
+datapmt        db     "Please enter a number: ", 0
+emptyls        db     "List is empty...", 10, 0
+pushinghead    db     "Inserting number in head...", 10, 0
+poppinghead    db     "Removing number from head...", 10, 0
+pushingtail    db     "Inserting number in tail...", 10, 0
+poppingtail    db     "Removing number from tail...", 10, 0
+clearing       db     "Clearing the list...", 10, 0
+inserting      db     "Inserting a number...", 10, 0
+removing       db     "Removing a number...", 10, 0
+insertVal      dd     0
+userChoice     dd     0
 datafmt        db     "%i", 0
 charfmt        db     " %c", 0
 invalid        db     "Invalid entry", 10, 0

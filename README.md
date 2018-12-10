@@ -30,5 +30,5 @@ This program is a linked list. This was a collaboration from all the students in
 * popTail    - Removes the node from the back of the list.
 * clearList  - Removes all nodes from the list.
 * insertNode - Inserts a node with a given value in sorted ascending order.
+* removeNode - Removes a node with a given value
 * printList  - Displays entire list in [Node]-> format
-* removeNode - FIXME
