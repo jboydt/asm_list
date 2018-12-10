@@ -140,7 +140,7 @@ _main:
   clearscreen
   print datapmt
   scan insertVal, datafmt
-  print removing
+  removeNode head, insertVal
   jmp _start
 
   _exit:
