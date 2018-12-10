@@ -15,6 +15,7 @@ extern _free
 %include "slist.inc"
 
 section .data
+%include "menuData.inc"
 endline        db     "", 10, 0
 welcome        db     "Welcome to the linked list program!", 10, 10, 0
 prompt1        db     "1. Push head", 10, 0
@@ -62,15 +63,16 @@ _main:
   print welcome
   _start:
   printList head, printFmt
+  bigPrint menu
 
-  print prompt1
-  print prompt2
-  print prompt3
-  print prompt4
-  print prompt5
-  print prompt6
-  print prompt7
-  print prompt0
+  ;print prompt1
+  ;print prompt2
+  ;print prompt3
+  ;print prompt4
+  ;print prompt5
+  ;print prompt6
+  ;print prompt7
+  ;print prompt0
   print enterpm
   scan  userChoice, datafmt
   mov  ebx, dword[userChoice]
