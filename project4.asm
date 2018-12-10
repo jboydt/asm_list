@@ -24,6 +24,7 @@ section .data
   prompt4        db  "4. Pop tail", 10, 0
   prompt5        db  "5. Clear list", 10, 0
   prompt6        db  "6. Insert value", 10, 0
+  prompt7        db  "7. Remove value", 10, 0
   prompt0        db  "0. Exit", 10, 0
   enterpm        db  "your choice:  ", 0
   goodBye        db  "Shutting Down...", 0
@@ -61,6 +62,7 @@ _main:
     print prompt4
     print prompt5
     print prompt6
+    print prompt7
     print prompt0
     print enterpm
     scan  userChoice, datafmt
@@ -77,6 +79,8 @@ _main:
     je   _clearList
     cmp  ebx, 6
     je   _insert
+    cmp  ebx, 7
+    je   _remove
     cmp  ebx, 0
     je   _exit
 
@@ -112,6 +116,11 @@ _main:
     scan insertVal, datafmt
     insertNode insertVal, head
     jmp _start
+
+    _insert:
+      print datapmt
+      scan insertVal, datafmt
+      jmp _start
 
   _exit:
     clearscreen
