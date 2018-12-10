@@ -29,6 +29,7 @@ enterpm        db  "Enter a option:  ", 0
 goodBye        db  "Shutting Down...", 10, 0
 datapmt        db  "Please enter a number: ", 0
 emptyls        db  "List is empty...", 10, 0
+listCleared    db  "List has been cleared.", 10, 0 
 pushinghead    db  "Inserting number in head...", 10, 0
 poppinghead    db  "Removing number from head...", 10, 0
 pushingtail    db  "Inserting number in tail...", 10, 0
