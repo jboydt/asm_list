@@ -6,7 +6,23 @@
   call _printf
   add  esp, 16
   popad
+%endmacro\
+
+;%1 INFINITE string print
+%macro	bigPrint 1-*
+	pushad
+		sub 	esp, 16
+			mov ebx, 0
+			%rep %0
+				mov		dword[esp+ebx], %1
+				add 	ebx, 4
+				%rotate 1
+			%endrep
+			call	_printf
+		add		esp, 16
+	popad
 %endmacro
+
 
 ; %1 fmt string
 ; %2 data [immediate]
