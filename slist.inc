@@ -129,8 +129,7 @@ popad
     %%_end:
       print emptyls
 
-    %%_end_loop:
-
+    
   %%_end_loop:
   print emptyls
   popad
@@ -141,7 +140,7 @@ popad
 ; %2 head pointer
 %macro insertNode 2
   pushad
-  
+
   makeNode %1                                    ; Allocate memory for node
 
   mov  ebx, [%2]                                 ; ebx (upper counter) starts at head pointer

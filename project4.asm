@@ -117,10 +117,10 @@ _main:
     insertNode insertVal, head
     jmp _start
 
-    _insert:
-      print datapmt
-      scan insertVal, datafmt
-      jmp _start
+  _remove:
+    print datapmt
+    scan insertVal, datafmt
+    jmp _start
 
   _exit:
     clearscreen
