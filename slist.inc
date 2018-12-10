@@ -180,6 +180,56 @@ popad
   popad
 %endmacro
 
+
+; %1 head pointer
+; %2 value to remove
+%macro removeNode 2
+pushad
+    pushad
+    cmp dword [%1], 0
+    je %%_end
+	  mov ebx, [%1]
+	  
+	  mov ecx, [%2]
+	  
+  %%_start_delete:
+      
+	  
+	  cmp ecx, [ebx + Node.data]
+	  je %%_head_was_value
+	  mov edx, ebx
+      mov ebx, [ebx + Node.next]
+	  
+	  cmp ebx, 0
+	  jne %%_start_delete
+	  jmp %%_end
+      ;mov [%1], eax
+	  
+	  %%_head_was_value:
+	  cmp ebx, [%1]
+	  jne %%_dont_pophead
+      popHead %1
+	  jmp %%_end
+	  %%_dont_pophead:
+	  mov eax, [ebx + Node.next]
+	  mov [edx + Node.next], eax 
+	  freeNode ebx
+	  
+
+      cmp ebx, 0
+      
+
+    %%_end:
+      
+
+    
+
+  %%_end_loop:
+  print emptyls
+  popad
+%endmacro
+
+
 ; %1 node to be removed [immediate]
 %macro freeNode 1
   pushad
